@@ -73,3 +73,4 @@ Les locations peuvent également être filtrées par type de tests environnement
 
 L'application affichera également une arborescence des différentes locations présentes dans l'application(hoptial, batiment, étage, chambre ...)
 
+Test push lea
