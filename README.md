@@ -57,3 +57,19 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## Cahier des charges
+
+L'application doit renvoyer des practiciens en fonction des différentes chambres et batiments présents dans l'application
+
+Il est possible de filtrer par batiment, par étage, par bloc opératoire, par box de soin, par chambre, de n'afficher que les laboratoires, les salles de consultations et les salles d'examen.
+
+L'application doit également permettre d'ajouter des types de location ou de modifier des locations.
+
+L'application permettra aussi de modifier le statut d'une location en fonction de son cas (disponible, indisponible, en travaux, en décontamination...)
+
+L'application donnera des informations supplémentaires sur les locations notamment quels types de test sont nécessaires pour le controle de l'environnement.
+Les locations peuvent également être filtrées par type de tests environnementaux.
+
+L'application affichera également une arborescence des différentes locations présentes dans l'application(hoptial, batiment, étage, chambre ...)
+
