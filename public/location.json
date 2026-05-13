@@ -1,0 +1,44 @@
+[{
+      "id": "SalleExamen42",
+      "name": "Salle d'examen 42 - Cardiologie",
+      "identifier": "LOC-EXAM-42",
+      "type": "Salle d'examen",
+      "city": "Castres",
+      "phone": "+33 1 23 45 67 89",
+      "status": "active",
+      "controls": ["Température", "Humidité", "Qualité de l'air"],
+      "partOf": "Étage 2"
+    },
+    {
+      "id": "ChambreSolitaire01",
+      "name": "Chambre 101",
+      "identifier": "CH-101",
+      "type": "Chambre individuelle",
+      "city": "Castres",
+      "phone": "+33 1 23 45 67 01",
+      "status": "active",
+      "controls": ["Température"],
+      "partOf": "Étage 1"
+    },
+    {
+      "id": "BlocOp03",
+      "name": "Bloc Opératoire 03",
+      "identifier": "BLOC-03",
+      "type": "Bloc",
+      "city": "Castres",
+      "phone": "+33 1 23 45 67 03",
+      "status": "inactive",
+      "controls": ["Température", "Humidité", "Air", "Pression"],
+      "partOf": "Rez-de-chaussée"
+    },
+      {
+      "id": "SalleConsultation31",
+      "name": "Salle de consultation 31",
+      "identifier": "LOC-CONS-31",
+      "type": "Salle de consultation",
+      "city": "Castres",
+      "phone": "+33 1 23 45 67 07",
+      "status": "en travaux",
+      "controls": ["Température"],
+      "partOf": "Étage 3"
+    }]
