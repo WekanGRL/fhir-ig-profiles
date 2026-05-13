@@ -87,3 +87,41 @@
 .add-btn:hover {
   background-color: #2f855a;
 }
+
+.filter-menu {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  background-color: #FED7E2; /* Rose pâle (état normal) */
+  color: #2D3748; /* Texte gris foncé pour contraste */
+  border: 1px solid #FBB6CE; /* Bordure légèrement plus foncée */
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+  margin-right: 4px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.filter-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.filter-btn.active {
+  background-color: #D69E2E; /* Rose foncé (état sélectionné) */
+  color: white;
+  border-color: #B7791F;
+}
+
+
+.filter-btn {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+

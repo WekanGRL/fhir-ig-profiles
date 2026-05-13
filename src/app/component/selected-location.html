@@ -1,5 +1,15 @@
+<div class="filter-menu">
+  @for (option of filterOptions; track option.value) {
+    <button
+      class="filter-btn"
+      [class.active]="filterSelected() === option.value"
+      (click)="filterSelected.set(option.value)">
+      {{ option.label }}
+    </button>
+  }
+</div>
 <div class="pill-group">
-        @for (location of locations(); track location.id) {
+        @for (location of filteredLocations(); track location.id) {
           <button
             class="pill"
             [class.active]="selectedLocation?.id === location.id"
