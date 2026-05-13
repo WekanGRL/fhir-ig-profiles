@@ -1,25 +1,23 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, Signal, signal, WritableSignal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { LocationService } from './services/location-service';
 
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet],
-  template: ` {{ locations() }}  `,
   styleUrl: './app.css',
-  // templateUrl: './app.html',
+  templateUrl: './app.html',
 })
 export class App {
   protected readonly title = signal('ServicePatrimoine');
 
   locationService = inject(LocationService);
-  locations = signal(new PatrimoineLocation());
+  locations: WritableSignal<PatrimoineLocation[]> = signal([]);
 
   constructor() {
     this.locationService.getLocations().subscribe((data) => {
-      const parsedData = JSON.parse(data);
-      console.log(parsedData);
-      this.locations.set(data.entry[0].resource);
+      console.log("Data received in App component:", data);
+      this.locations.set(data);
     });
   }
 }

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
+import { map } from 'rxjs/internal/operators/map';
 import { Subject } from 'rxjs/internal/Subject';
 
 @Injectable({
@@ -9,12 +10,14 @@ import { Subject } from 'rxjs/internal/Subject';
 export class LocationService {
   http = inject(HttpClient);
 
-  getLocations() {
-    console.log("getLocations called");
-    return this.http.get<any>("https://fhir.chl.connected-health.fr/fhir/Location");
+  getLocations(): Observable<PatrimoineLocation[]> {
+    return this.http.get("https://fhir.chl.connected-health.fr/fhir/Location")
+    .pipe(map(
+      (response: any) => 
+      response.entry.map((entry: any) => 
+        entry.resource) ));
   }
   
-
   getLocation(id: string) {
     return this.http.get(`https://fhir.chl.connected-health.fr/fhir/Location/${id}`);
   }
