@@ -345,12 +345,12 @@
       <p style="margin-bottom: 20px;">Sélectionnez une Location pour voir les détails.</p>
 
       <div class="pill-group">
-        @for (Location of Location; track Location.id) {
+        @for (location of locations(); track location.id) {
           <button
             class="pill"
-            [class.active]="selectedLocation?.id === Location.id"
-            (click)="selectLocation(Location)">
-            Location {{ Location.numero }}
+            [class.active]="selectedLocation?.id === location.id"
+            (click)="selectLocation(location)">
+            Location {{ location.identifier[0]?.value || location.id }}
           </button>
         }
       </div>
@@ -363,7 +363,7 @@
       @if (selectedLocation) {
         <div class="details-card">
           <h2 style="color: var(--gray-900); margin-top: 0;">
-            Détails : {{ selectedLocation.numero }}
+            Détails : {{ selectedLocation.name || selectedLocation.id }}
           </h2>
           <button (click)="modifLocation()" title="Modifier" class="edit-btn">Modifier</button>
           <button (click)="deleteLocation()" title="Supprimer" class="delete-btn">Supprimer</button>
@@ -371,14 +371,13 @@
 
           <hr style="border: 0; border-top: 1px solid #ddd; margin: 15px 0;">
 
-          <p><strong>Type:</strong> {{ selectedLocation.type }}</p>
-          <p><strong>Étage:</strong> {{ selectedLocation.etage }}</p>
-          <p><strong>Équipements:</strong> {{ selectedLocation.equipements.join(', ') }}</p>
+          <p><strong>Type:</strong> {{ selectedLocation.type[0].coding[0].display }}</p>
+          <p><strong>Control:</strong> {{ selectedLocation.extension[0]?.valueCodeableConcept.coding[0]?.display || 'Non spécifié' }}</p>
           <p style="margin-top: 15px;">
             <strong>Statut:</strong>
             <span class="status-badge"
-                  [style.color]="selectedLocation.disponible ? 'green' : 'red'">
-              {{ selectedLocation.disponible ? 'Libre' : 'Occupée' }}
+                  [style.color]="selectedLocation.status == 'active' ? 'green' : 'red'">
+              {{ selectedLocation.status }}
             </span>
           </p>
         </div>

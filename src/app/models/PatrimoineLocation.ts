@@ -17,7 +17,7 @@ class PatrimoineLocation {
             code: string;
             display: string;
         }[];
-    }
+    }[];
     telecom: {
         system: string;
         value: string;
@@ -43,9 +43,7 @@ class PatrimoineLocation {
         this.identifier = [];
         this.status = '';
         this.name = '';
-        this.type = {
-            coding: []
-        };
+        this.type = [];
         this.telecom = [];
         this.address = [];
         this.managingOrganization = {
