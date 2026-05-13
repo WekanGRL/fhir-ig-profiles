@@ -125,3 +125,32 @@
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+.sub-filter-menu {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  border-top: 1px solid #FBB6CE;
+  padding-top: 8px;
+}
+
+.filter-btn.sub-filter {
+  background-color: #F7FAFC; /* Bleu très clair */
+  color: #4A5568;
+  border: 1px solid #E2E8F0;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.filter-btn.sub-filter:hover {
+  background-color: #EDF2F7;
+}
+
+.filter-btn.sub-filter.active {
+  background-color: #4299E1; /* Bleu (tu peux le changer en rose si tu préfères) */
+  color: white;
+  border-color: #3182CE;
+}

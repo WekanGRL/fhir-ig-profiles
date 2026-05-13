@@ -3,11 +3,24 @@
     <button
       class="filter-btn"
       [class.active]="filterSelected() === option.value"
-      (click)="filterSelected.set(option.value)">
+      (click)="setTypeFilter(option.value)">
       {{ option.label }}
     </button>
   }
 </div>
+
+<div class="sub-filter-menu">
+    @for (option of extensionFilterOptions; track option.value) {
+      <button
+        class="filter-btn sub-filter"
+        [class.active]="extensionFilterSelected() === option.value"
+        (click)="setExtensionFilter(option.value)"
+      >
+        {{ option.label }}
+      </button>
+    }
+</div>
+
 <div class="pill-group">
         @for (location of filteredLocations(); track location.id) {
           <button

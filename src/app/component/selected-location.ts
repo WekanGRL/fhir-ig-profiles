@@ -14,42 +14,73 @@ selectedLocation: PatrimoineLocation | null = null;
 locations: WritableSignal<PatrimoineLocation[]> = signal([]);
 
 filterSelected: WritableSignal<string | null> = signal(null)
+extensionFilterSelected: WritableSignal<string | null> = signal(null);
+
+private getExtensionDisplay(ext: any): string | null {
+    try {
+      if (ext.valueCodeableConcept?.coding?.[0]?.display) {
+        return ext.valueCodeableConcept.coding[0].display;
+      }
+      if (ext.valueString) {
+        return ext.valueString;
+      }
+      if (ext.url) {
+        return ext.url.split('/').pop()?.replace(/-/g, ' ');
+      }
+      return null;
+    } catch (e) {
+      console.error("Erreur dans getExtensionDisplay:", e);
+      return null;
+    }
+  }
 
 filteredLocations = computed(() => {
-    const filter = this.filterSelected();
+    const typeFilter = this.filterSelected();
+    const extensionFilter = this.extensionFilterSelected();
     const allLocations = this.locations();
 
-    if (!filter) {
-      return allLocations; // Retourne toutes les locations si aucun filtre
-    }
+    console.log("Filtrage appliqué:", { typeFilter, extensionFilter });
 
     return allLocations.filter(location => {
-      // Vérifie si le type contient le display filtré
-      return location.type?.some(t =>
-        t.coding?.some(c => c.display?.toLowerCase() === filter.toLowerCase())
-      );
-    });
-  });
+      // Filtrage par type principal
+      const typeMatch = !typeFilter ||
+        location.type?.some((t: any) =>
+          t.coding?.some((c: any) => c.display?.toLowerCase() === typeFilter.toLowerCase())
+        );
 
-filterOptions = [
+      const extensionMatch = !extensionFilter ||
+        location.extension?.some((ext: any) => {
+          const display = this.getExtensionDisplay(ext);
+          return display?.toLowerCase() === extensionFilter.toLowerCase();
+        });
+
+      return typeMatch && extensionMatch;
+    });
+  })
+
+  filterOptions = [
     { value: null, label: 'Tous les types' },
     { value: 'Salle d\'examen', label: 'Salle d\'examen' },
     { value: 'Bloc opératoire', label: 'Bloc opératoire' },
     { value: 'Salle de soins', label: 'Salle de soins' },
   ];
 
-changeStatus(location: any) {
-    if (location.status === 'active') {
-      location.status = 'inactive';
-    } else {
-      location.status = 'active';
-    }
-    this.locationService.updateLocation(location.id, location).subscribe(() => {
-      console.log(`Location ${location.id} status updated to ${location.status}`);
-    });
-  };
+  extensionFilterOptions = [
+    { value: null, label: 'Toutes les conditions' },
+    { value: 'Temperature Control', label: 'Contrôle de température' },
+    { value: 'Humidity rate Control', label: 'Contrôle d\'humidité' },
+    { value: 'Air Quality Control', label: 'Contrôle de qualité de l\'air' },
+    { value: 'Irradiation rate Control', label: 'Contrôle de l\'irradiation' },
+    { value: 'Environment with pressure to prevents microparticles from entering', label: 'Environnement avec pression pour empêcher les microparticules de pénétrer' },
+  ];
 
+  setTypeFilter(filterValue: string | null) {
+    this.filterSelected.set(filterValue);
+  }
 
+  setExtensionFilter(filterValue: string | null) {
+    this.extensionFilterSelected.set(filterValue);
+  }
 
 deleteLocation() {
 throw new Error('Method not implemented.');
