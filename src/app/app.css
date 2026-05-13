@@ -1,0 +1,14 @@
+.add-btn {
+  background: var(--bright-blue);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: opacity 0.2s;
+}
+
+.add-btn:hover {
+  opacity: 0.8;
+}

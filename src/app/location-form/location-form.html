@@ -1,0 +1,79 @@
+<div class="form-container">
+  <h2>Ajouter un Patrimoine</h2>
+
+  <form [formGroup]="locationForm" (ngSubmit)="onSubmit()">
+
+    <div class="field">
+      <label>Nom de la salle / bloc</label>
+      <input type="text" formControlName="name" placeholder="Ex: Bloc Opératoire 05">
+    </div>
+
+    <div class="grid">
+      <div class="field">
+        <label>Identifiant (ID)</label>
+        <input type="text" formControlName="id" placeholder="Ex: Bloc-05">
+      </div>
+
+      <div class="field">
+        <label>Code (Identifier)</label>
+        <input type="text" formControlName="identifier" placeholder="Ex: B05-CAS">
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="field">
+        <label>Type</label>
+        <select formControlName="type">
+          <option value="Salle d'examen">Salle d'examen</option>
+          <option value="Bloc">Bloc</option>
+          <option value="Chambre individuelle">Chambre individuelle</option>
+          <option value="Chambre double">Chambre double</option>
+          <option value="Salle de consultation">Salle de consultation</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Statut</label>
+        <select formControlName="status">
+          <option value="active">Active</option>
+          <option value="inactive">Inactive</option>
+          <option value="en travaux">En travaux</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Téléphone</label>
+      <input type="tel" formControlName="phone" placeholder="+33...">
+    </div>
+
+    <div class="field">
+      <label>Rattaché à (Étage/Aile)</label>
+      <input type="text" formControlName="partOf" placeholder="Ex: Étage 2">
+    </div>
+
+    <!-- NOUVELLE SECTION : Contrôles environnementaux -->
+    <div class="field">
+      <label style="margin-bottom: 10px; display: block;">Contrôles environnementaux</label>
+      <div style="display: flex; flex-direction: column; gap: 8px; background: #f9fafb; padding: 12px; border-radius: 8px; border: 1px solid #e5e7eb;">
+        @for (ctrl of controls; track ctrl.code) {
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <input
+              type="checkbox"
+              [id]="ctrl.code"
+              [(ngModel)]="ctrl.checked"
+              [ngModelOptions]="{standalone: true}"
+              style="width: 18px; height: 18px; cursor: pointer;">
+            <label [for]="ctrl.code" style="cursor: pointer; font-weight: normal; margin: 0;">
+              {{ ctrl.display }}
+            </label>
+          </div>
+        }
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="locationForm.invalid" class="submit-btn" style="margin-top: 20px;">
+      Enregistrer dans FHIR
+    </button>
+  </form>
+</div>
