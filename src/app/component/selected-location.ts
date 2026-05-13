@@ -62,7 +62,12 @@ filteredLocations = computed(() => {
     { value: null, label: 'Tous les types' },
     { value: 'Salle d\'examen', label: 'Salle d\'examen' },
     { value: 'Bloc opératoire', label: 'Bloc opératoire' },
-    { value: 'Salle de soins', label: 'Salle de soins' },
+    { value: 'Box de soins', label: 'Box de soins' },
+    { value: 'Bâtiment', label: 'Bâtiment' },
+    { value: 'Chambre', label: 'Chambre' },
+    { value: 'Etage', label: 'Etage' },
+    { value: 'Laboratoire', label: 'Laboratoire' },
+    { value: 'Salle de consultation', label: 'Salle de consultation' },
   ];
 
   extensionFilterOptions = [
