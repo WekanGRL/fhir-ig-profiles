@@ -1,24 +1,17 @@
 import { Component, inject, signal,WritableSignal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { LocationService } from './services/location-service';
+import { SelectedLocation } from './component/selected-location';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, SelectedLocation],
   //template: ` {{ locations() }}  `,
   styleUrl: './app.css',
   templateUrl: './app.html',
 })
 export class App {
-deleteLocation() {
-throw new Error('Method not implemented.');
-}
-modifLocation() {
-throw new Error('Method not implemented.');
-}
-addLocation() {
-throw new Error('Method not implemented.');
-}
+
   protected readonly title = signal('ServicePatrimoine');
 
   locationService = inject(LocationService);
@@ -32,9 +25,5 @@ throw new Error('Method not implemented.');
       console.log("Data received in App component:", data);
       this.locations.set(data);
     });
-  }
-
-selectLocation(location: any) {
-    this.selectedLocation = location;
   }
 }

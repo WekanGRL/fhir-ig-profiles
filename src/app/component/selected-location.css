@@ -1,0 +1,89 @@
+ .pill {
+    cursor: pointer;
+    background: color-mix(in srgb, var(--bright-blue) 10%, transparent);
+    color: var(--bright-blue);
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+    font-weight: 500;
+  }
+
+  .pill:hover {
+    background: color-mix(in srgb, var(--bright-blue) 20%, transparent);
+    transform: translateY(-2px);
+  }
+
+  .pill.active {
+    border-color: var(--bright-blue);
+    background: var(--bright-blue);
+    color: white;
+  }
+
+  .details-card {
+    background: #f9fafb;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--gray-400);
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateX(10px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .status-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    background: #e2e8f0;
+  }
+.edit-btn {
+  background-color: #6873b1;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 3px;
+  transition: background-color 0.3s ease;
+}
+
+.edit-btn:hover {
+  background-color: #303f9f;
+}
+
+.delete-btn {
+  background-color: #e53e3e;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 3px;
+  transition: background-color 0.3s ease;
+}
+
+.delete-btn:hover {
+  background-color: #8c0707;
+}
+
+.add-btn {
+  background-color: #48bb78;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.25rem;
+  line-height: 1;
+  transition: background-color 0.3s ease;
+}
+
+.add-btn:hover {
+  background-color: #2f855a;
+}
